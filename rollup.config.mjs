@@ -25,7 +25,7 @@ export default defineConfig({
 		clear({
 			targets: ["dist", "types"],
 		}),
-		// terser(),
+		terser(),
 		nodeResolve(),
 		commonjs(),
 		typescript({
