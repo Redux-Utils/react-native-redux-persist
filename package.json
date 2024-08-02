@@ -15,7 +15,7 @@
 	},
 	"homepage": "https://github.com/Redux-Utils/react-native-redux-persist",
 	"repository": {
-		"url": "git://github.com/Redux-Utils/react-native-redux-persist.git"
+		"url": "https://github.com/Redux-Utils/react-native-redux-persist.git"
 	},
 	"bugs": "https://github.com/Redux-Utils/react-native-redux-persist/issues",
 	"keywords": [
