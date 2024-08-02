@@ -1,0 +1,88 @@
+# Arquivos e diretórios a serem ignorados pelo npm
+
+# Ignorar arquivos de configuração
+.editorconfig
+.eslintignore
+.eslintrc
+.prettierrc
+.eslintrc.*
+.prettierrc.*
+rollup.config.*
+jest.config.*
+
+# Ignorar arquivos de teste
+__tests__
+test
+tests
+*.test.js
+__mocks__
+
+# Ignorar arquivos de exemplo
+examples
+example
+*.example.js
+
+# Ignorar arquivos de documentação
+docs
+doc
+
+# Ignorar arquivos de versionamento
+.git
+.gitignore
+.gitattributes
+
+# Ignorar arquivos de pacote
+package-lock.json
+yarn.lock
+
+# Ignorar arquivos de IDE
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Files
+*.log
+*.log.*
+*.html
+*.htm
+*.txt
+*.md
+*.json
+*.yml
+*.yaml
+*.xml
+*.csv
+*.tsv
+*.sql
+*.sh
+*.bat
+*.cmd
+*.ps1
+*.psm1
+*.psd1
+*.ps1xml
+*.pssc
+*.msh
+*.msh1
+*.exe
+*.dll
+*.bin
+*.out
+*.app
+*.ipa
+*.apk
+*.jar
+
+## Folders
+
+/src/
+.github
+coverage
+
+## Generated files
+JS.README.md
