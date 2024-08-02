@@ -22,6 +22,7 @@ module.exports = {
 		"jest.config.*",
 		"__tests__",
 		"__mocks__",
+		".npmrc",
 	],
 	rules: {
 		"@typescript-eslint/interface-name-prefix": "off",
