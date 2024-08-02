@@ -8,6 +8,7 @@
 
 This is a library that helps you to persist your redux store and rehydrate it when the app is reloaded.
 It uses the mobile storage to save the data.
+You can use it with react-native and expo using the same code.
 Project is written in TypeScript. However, you can use it in JavaScript projects as well.
 
 ## Installation
@@ -30,6 +31,8 @@ yarn add react-native-redux-persist
 
 ```typescript
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
 	PersistConfig,
@@ -58,9 +61,7 @@ const reducers = {
 // Create a configuration for the persist
 const configs: PersistConfig = {
 	key: "root", // Key to store the data
-	storage: {
-		type: "localStorage", // Type of storage (local, session or cookies)
-	},
+	storage: AsyncStorage, // The storage that you want to use
 };
 
 const persistReducers = persistReducer(configs, reducers);
@@ -84,6 +85,8 @@ or you can use
 
 ```typescript
 import { legacy_createStore as createStore } from "redux";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
 	PersistConfig,
@@ -111,9 +114,7 @@ const exampleReducer = (state = initialState, action) => {
 // Create a configuration for the persist
 const configs: PersistConfig = {
 	key: "root", // Key to store the data
-	storage: {
-		type: "localStorage", // Type of storage (local, session or cookies)
-	},
+	storage: AsyncStorage, // The storage that you want to use
 };
 
 // Here you will pass all your reducers
@@ -133,22 +134,18 @@ const persistor = persistStore(store, configs);
 export default persistor;
 ```
 
-## How to integrate with React
+## How to integrate with React Native or Expo
+
+In your root component, you will wrap your components with the Provider from react-redux.
 
 ```tsx
 import React from "react";
-
-import { BrowserRouter as Router } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import store from "./redux/store"; // Is the persistor that you created and exported in the previous step
 
 function App() {
-	return (
-		<Provider store={store}>
-			<Router>{/* Your components */}</Router>
-		</Provider>
-	);
+	return <Provider store={store}>{/* Your components */}</Provider>;
 }
 ```
 
