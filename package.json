@@ -1,5 +1,5 @@
 {
-	"name": "react-native-redux-persist",
+	"name": "@redux-util/react-native-redux-persist",
 	"version": "0.0.1",
 	"description": "This is a library that helps you to persist your redux store and rehydrate it when the app is reloaded in your mobile app using react-native or expo with redux.",
 	"main": "./dist/cjs/index.js",
