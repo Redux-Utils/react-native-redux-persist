@@ -1,8 +1,8 @@
 import { persistActionType, prefix } from "../src/constants";
 
 describe("constants", () => {
-	it("Should retorn exactly string react/redux/persist:", () => {
-		const correctPrefix = "react/redux/persist:";
+	it("Should retorn exactly string react/native/redux/persist:", () => {
+		const correctPrefix = "react/native/redux/persist:";
 
 		expect(prefix).toBe(correctPrefix);
 	});

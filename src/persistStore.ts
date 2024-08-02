@@ -1,6 +1,6 @@
 import type { EnhancedStore } from "@reduxjs/toolkit";
 
-import WebStorage from "./WebStorage";
+import MobileStorage from "./MobileStorage";
 import { rehydrate } from "./persistSlice";
 import type { PersistConfig } from "./types/PersistConfig";
 
@@ -8,12 +8,17 @@ import type { PersistConfig } from "./types/PersistConfig";
 function persistStore<S>(store: EnhancedStore<S>, configs: PersistConfig) {
 	const { key, storage } = configs;
 
-	const safeStorage = storage || {
-		type: "localStorage",
-	};
+	if (!key) {
+		throw new Error("Key is required in persistStore");
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	if (!storage) {
+		throw new Error("Storage is required in persistStore");
+	}
 
 	store.subscribe(() => {
-		WebStorage.saveState(key, store.getState(), safeStorage);
+		MobileStorage.saveState(key, store.getState(), storage);
 	});
 
 	store.dispatch(rehydrate());

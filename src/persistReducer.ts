@@ -1,10 +1,8 @@
 import { combineReducers, type Reducer } from "@reduxjs/toolkit";
 
-import WebStorage from "./WebStorage";
+import MobileStorage from "./MobileStorage";
 import persistSlice from "./persistSlice";
-import returnStorageType from "./returnStorageType";
 import type { PersistConfig } from "./types/PersistConfig";
-import type { WebStorageOptions } from "./types/WebStorage";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function persistReducer<R>(
@@ -13,7 +11,14 @@ function persistReducer<R>(
 ) {
 	const { key, storage } = configs;
 
-	const storageType: WebStorageOptions = returnStorageType(storage);
+	if (!key) {
+		throw new Error("You must provide a `key` to persistReducer");
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	if (!storage) {
+		throw new Error("You must provide a `storage` to persistReducer");
+	}
 
 	const combinedReducers = combineReducers({
 		...reducers,
@@ -28,13 +33,9 @@ function persistReducer<R>(
 		  }>
 		| undefined;
 
-	const preloadedState = (
-		storageType.type === "cookies"
-			? WebStorage.loadState(key, {
-					type: storageType.type,
-					options: storageType.options,
-				})
-			: WebStorage.loadState(key, { type: storageType.type })
+	const preloadedState = MobileStorage.loadState(
+		key,
+		storage,
 	) as PreloadedState;
 
 	return {

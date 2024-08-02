@@ -20,12 +20,12 @@ export default defineConfig({
 			sourcemap: false,
 		},
 	],
-	external: ["@reduxjs/toolkit"],
+	external: ["@reduxjs/toolkit", "@react-native-async-storage/async-storage"],
 	plugins: [
 		clear({
 			targets: ["dist", "types"],
 		}),
-		terser(),
+		// terser(),
 		nodeResolve(),
 		commonjs(),
 		typescript({

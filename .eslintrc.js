@@ -20,7 +20,6 @@ module.exports = {
 		"dist",
 		"node_modules",
 		"jest.config.*",
-		"types",
 		"__tests__",
 		"__mocks__",
 	],

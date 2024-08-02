@@ -1,4 +1,4 @@
-# React Redux Persist
+# React Native Redux Persist
 
 ## TS README
 
@@ -7,7 +7,8 @@
 ## Description
 
 This is a library that helps you to persist your redux store and rehydrate it when the app is reloaded.
-It uses the local storage, session storage or cookies to store the data.
+It uses the mobile storage to save the data.
+You can use it with react-native, expo.
 Project is written in TypeScript. However, you can use it in JavaScript projects as well.
 
 ## Installation
@@ -15,13 +16,13 @@ Project is written in TypeScript. However, you can use it in JavaScript projects
 ### NPM
 
 ```bash
-npm install react-redux-persist
+npm install react-native-redux-persist
 ```
 
 ### Yarn
 
 ```bash
-yarn add react-redux-persist
+yarn add react-native-redux-persist
 ```
 
 ## Usage
@@ -31,7 +32,7 @@ yarn add react-redux-persist
 ```typescript
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-import { persistReducer, persistStore } from "react-redux-persist";
+import { persistReducer, persistStore } from "react-native-redux-persist";
 
 // Example of a reducer
 const exampleSlice = createSlice({
@@ -78,7 +79,7 @@ or you can use
 ```typescript
 import { legacy_createStore as createStore } from "redux";
 
-import { persistReducer, persistStore } from "react-redux-persist";
+import { persistReducer, persistStore } from "react-native-redux-persist";
 
 // Example of a reducer
 const initialState = {

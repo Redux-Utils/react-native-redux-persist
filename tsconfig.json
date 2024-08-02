@@ -1,12 +1,11 @@
 {
 	"compilerOptions": {
 		// Default
-		"target": "ES5",
+		"target": "ES6",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"skipLibCheck": true,
-
 		"module": "ES6",
 		"declaration": true,
 		"declarationDir": "types",
@@ -14,6 +13,6 @@
 		"emitDeclarationOnly": true,
 		"moduleResolution": "Node"
 	},
-	"include": ["src"],
+	"include": ["src", "__tests__/index.test.ts"],
 	"exclude": ["node_modules", "dist"]
 }
