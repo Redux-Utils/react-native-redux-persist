@@ -1,3 +1,7 @@
+## UNDER DEVELOPMENT
+
+!!! DO NOT USE IT IN PRODUCTION !!!
+
 # React Native Redux Persist
 
 ## JS README
