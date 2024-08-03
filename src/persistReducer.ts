@@ -5,7 +5,7 @@ import persistSlice from "./persistSlice";
 import type { PersistConfig } from "./types/PersistConfig";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-async function persistReducer<R>(
+function persistReducer<R>(
 	configs: PersistConfig,
 	reducers: { [K in keyof R]: Reducer<R[K]> },
 ) {
@@ -33,15 +33,12 @@ async function persistReducer<R>(
 		  }>
 		| undefined;
 
-	const preloadedState = (await MobileStorage.loadState(
-		key,
-		storage,
-	)) as PreloadedState;
-
-	return {
-		combinedReducers,
-		preloadedState,
-	};
+	MobileStorage.loadState(key, storage).then((state) => {
+		return {
+			combinedReducers,
+			preloadedState: state as PreloadedState,
+		};
+	});
 }
 
 export { persistReducer };
