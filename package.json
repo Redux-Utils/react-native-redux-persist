@@ -1,5 +1,5 @@
 {
-	"name": "@redux-utils/react-native-redux-persist",
+	"name": "react-native-redux-persist2",
 	"version": "0.0.1",
 	"private": false,
 	"description": "This is a library that helps you to persist your redux store and rehydrate it when the app is reloaded in your mobile app using react-native or expo with redux.",
@@ -13,11 +13,9 @@
 			"types": "./types/index.d.ts"
 		}
 	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/@redux-utils"
-	},
 	"homepage": "https://github.com/Redux-Utils/react-native-redux-persist",
 	"repository": {
+		"type": "git",
 		"url": "https://github.com/Redux-Utils/react-native-redux-persist.git"
 	},
 	"bugs": "https://github.com/Redux-Utils/react-native-redux-persist/issues",
@@ -29,7 +27,8 @@
 		"react-component",
 		"react-library",
 		"react-redux-persist",
-		"react-native-redux-persist"
+		"react-native-redux-persist",
+		"react-native-redux-persist2"
 	],
 	"scripts": {
 		"rollup": "rollup -c",

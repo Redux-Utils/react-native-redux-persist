@@ -17,8 +17,8 @@ function persistStore<S>(store: EnhancedStore<S>, configs: PersistConfig) {
 		throw new Error("Storage is required in persistStore");
 	}
 
-	store.subscribe(() => {
-		MobileStorage.saveState(key, store.getState(), storage);
+	store.subscribe(async () => {
+		await MobileStorage.saveState(key, store.getState(), storage);
 	});
 
 	store.dispatch(rehydrate());
