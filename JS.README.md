@@ -10,15 +10,15 @@
 
 ## Storages supported
 
-- AsyncStorage
- - type: "AsyncStorage"
-- Expo Secure Store
- - type: "expo-secure-store"
- - options: ExpoSecureStoreOptions
-	 - authenticationPrompt: string
-	 - keychainAccessible: KeychainAccessibilityConstant
-	 - keychainService: string
-	 - requireAuthentication: boolean
+- AsyncStorage (React Native and Expo)
+  - type: "AsyncStorage"
+- Expo Secure Store (Expo)
+  - type: "expo-secure-store"
+  - options: ExpoSecureStoreOptions
+    - authenticationPrompt: string
+	- keychainAccessible: KeychainAccessibilityConstant
+	- keychainService: string
+	- requireAuthentication: boolean
 
 ## Description
 
