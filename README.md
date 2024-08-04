@@ -11,14 +11,14 @@
 ## Storages supported
 
 - AsyncStorage
-  - type: "AsyncStorage"
+ - type: "AsyncStorage"
 - Expo Secure Store
-  - type: "expo-secure-store"
-	- options: ExpoSecureStoreOptions
-	  - authenticationPrompt: string
-		- keychainAccessible: KeychainAccessibilityConstant
-		- keychainService: string
-		- requireAuthentication: boolean
+ - type: "expo-secure-store"
+ - options: ExpoSecureStoreOptions
+	 - authenticationPrompt: string
+	 - keychainAccessible: KeychainAccessibilityConstant
+	 - keychainService: string
+	 - requireAuthentication: boolean
 
 ## Expo Secure Store Options
 
