@@ -9,8 +9,14 @@ export interface PersistConfig {
 	/**
 	 * The storage engine to use
 	 * There are no default values for this, you must provide a storage engine
+	 * @type {storage} - string - The storage engine to use
 	 * @example
-	 * storage: AsyncStorage
+	 * storage: "AsyncStorage"
+	 *
+	 * @description
+	 * !!! IMPORTANT !!!
+	 * If you are using AsyncStorage, you must install the package @react-native-async-storage/async-storage
+	 * You need to install your storage engine before using it
 	 */
 	storage: MobileStorageOptions;
 }

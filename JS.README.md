@@ -20,13 +20,13 @@ Project is written in TypeScript. However, you can use it in JavaScript projects
 ### NPM
 
 ```bash
-npm install react-native-redux-persist
+npm install react-native-redux-persist2
 ```
 
 ### Yarn
 
 ```bash
-yarn add react-native-redux-persist
+yarn add react-native-redux-persist2
 ```
 
 ## Usage
@@ -38,7 +38,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { persistReducer, persistStore } from "react-native-redux-persist";
+import { persistReducer, persistStore } from "react-native-redux-persist2";
 
 // Example of a reducer
 const exampleSlice = createSlice({
@@ -85,7 +85,7 @@ import { legacy_createStore as createStore } from "redux";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { persistReducer, persistStore } from "react-native-redux-persist";
+import { persistReducer, persistStore } from "react-native-redux-persist2";
 
 // Example of a reducer
 const initialState = {

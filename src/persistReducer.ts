@@ -1,46 +1,49 @@
-import { combineReducers, type Reducer } from "@reduxjs/toolkit";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Action, Reducer, UnknownAction } from "@reduxjs/toolkit";
+import { combineReducers } from "@reduxjs/toolkit";
 
-import MobileStorage from "./MobileStorage";
-import persistSlice from "./persistSlice";
-import type { PersistConfig } from "./types/PersistConfig";
+import { rehydrateActionType } from "./constants";
+import type { ReducerReceived } from "./types/persistReducer";
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-async function persistReducer<R>(
-	configs: PersistConfig,
-	reducers: { [K in keyof R]: Reducer<R[K]> },
-) {
-	const { key, storage } = configs;
+function persistReducer<
+	S = any,
+	A extends Action = UnknownAction,
+	PreloadedState = S,
+>(
+	reducer: ReducerReceived<S, A, PreloadedState>,
+): Reducer<S, A, PreloadedState> {
+	const data: any = {
+		state: {},
+	};
 
-	if (!key) {
-		throw new Error("You must provide a `key` to persistReducer");
-	}
+	return (state: any = data.state, action: any) => {
+		if (
+			action.type &&
+			(action?.type === "@@INIT" || action?.type?.startsWith("@@redux/INIT"))
+		) {
+			data.state = { ...state };
+		}
 
-	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-	if (!storage) {
-		throw new Error("You must provide a `storage` to persistReducer");
-	}
+		const rootReducer =
+			typeof reducer === "function" ? reducer : combineReducers(reducer);
 
-	const combinedReducers = combineReducers({
-		...reducers,
-		persist: persistSlice,
-	});
+		switch (action.type) {
+			case rehydrateActionType: {
+				const rehydratedState = {
+					...data.state,
+					...(action?.payload || {}),
+				};
 
-	type ReducersType = typeof reducers;
+				data.state = rootReducer(rehydratedState, {
+					type: rehydrateActionType,
+					payload: rehydratedState,
+				} as any);
 
-	type PreloadedState =
-		| Partial<{
-				[K in keyof ReducersType]: ReturnType<ReducersType[K]>;
-		  }>
-		| undefined;
-
-	const preloadedState = (await MobileStorage.loadState(
-		key,
-		storage,
-	)) as PreloadedState;
-
-	return {
-		combinedReducers,
-		preloadedState,
+				return data.state;
+			}
+			default:
+				return rootReducer(state, action);
+		}
 	};
 }
 

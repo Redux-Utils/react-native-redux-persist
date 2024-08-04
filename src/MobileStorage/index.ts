@@ -6,14 +6,12 @@ import { prefix } from "../constants";
 import type { LoadState, MobileStorageOptions } from "../types/MobileStorage";
 
 export default class MobileStorage {
-	private static readonly asyncStorageL: AsyncStorageL = new AsyncStorageL();
-
 	public static async loadState(
 		key: string,
 		storage: MobileStorageOptions,
 	): Promise<LoadState> {
-		if (storage === AsyncStorage) {
-			return await this.asyncStorageL.loadState(prefix + key, storage);
+		if (storage === "AsyncStorage") {
+			return await AsyncStorageL.loadState(prefix + key, AsyncStorage);
 		}
 	}
 
@@ -22,8 +20,8 @@ export default class MobileStorage {
 		state: GetState<unknown>,
 		storage: MobileStorageOptions,
 	): Promise<void> {
-		if (storage === AsyncStorage) {
-			await this.asyncStorageL.saveState(prefix + key, state, storage);
+		if (storage === "AsyncStorage") {
+			await AsyncStorageL.saveState(prefix + key, state, AsyncStorage);
 		}
 	}
 }

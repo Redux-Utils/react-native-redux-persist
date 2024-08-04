@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		// Default
-		"target": "ES6",
+		"target": "ES2016",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
@@ -13,6 +13,6 @@
 		"emitDeclarationOnly": true,
 		"moduleResolution": "Node"
 	},
-	"include": ["src", "__tests__/index.test.ts"],
+	"include": ["src"],
 	"exclude": ["node_modules", "dist"]
 }

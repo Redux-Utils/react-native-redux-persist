@@ -3,7 +3,7 @@ import type { AsyncStorageStatic } from "@react-native-async-storage/async-stora
 import type { LoadState, State } from "../types/MobileStorage";
 
 export default class AsyncStorageLocal {
-	public async loadState(
+	public static async loadState(
 		key: string,
 		storage: AsyncStorageStatic,
 	): Promise<LoadState> {
@@ -24,7 +24,7 @@ export default class AsyncStorageLocal {
 		}
 	}
 
-	public async saveState(
+	public static async saveState(
 		key: string,
 		state: State,
 		storage: AsyncStorageStatic,

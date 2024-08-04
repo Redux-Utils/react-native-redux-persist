@@ -18,6 +18,7 @@ export default defineConfig({
 			file: packageJson.main,
 			format: "cjs",
 			sourcemap: false,
+			interop: "auto"
 		},
 	],
 	external: ["@reduxjs/toolkit", "@react-native-async-storage/async-storage"],
