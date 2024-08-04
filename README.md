@@ -33,15 +33,13 @@ yarn add react-native-redux-persist2
 
 ### @Reduxjs/toolkit
 
-```typescript
+```ts
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import {
-	PersistConfig,
 	persistReducer,
-	persistStore,
+	initStore,
+	PersistConfig,
 } from "react-native-redux-persist2";
 
 // Example of a reducer
@@ -62,22 +60,23 @@ const reducers = {
 	example: exampleSlice.reducer,
 };
 
-// Create a configuration for the persist
-const configs: PersistConfig = {
-	key: "root", // Key to store the data
-	storage: AsyncStorage, // The storage that you want to use
-};
-
-const persistReducers = persistReducer(configs, reducers);
+const rootReducer = persistReducer(reducers);
 
 const store = configureStore({
-	reducer: persistReducers.combinedReducers,
-	preloadedState: persistReducers.preloadedState,
+	reducer: rootReducer,
 });
 
-const persistor = persistStore(store, configs);
+const configs: PersistConfig = {
+	key: "root", // Key to store the data
+	storage: {
+		type: "AsyncStorage", // The storage that you want to use
+	},
+};
 
-export default persistor;
+// This will initialize the store and rehydrate it
+initStore(store, configs);
+
+export default store;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
@@ -90,12 +89,10 @@ or you can use
 ```typescript
 import { legacy_createStore as createStore } from "redux";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import {
-	PersistConfig,
 	persistReducer,
-	persistStore,
+	initStore,
+	PersistConfig,
 } from "react-native-redux-persist2";
 
 // Example of a reducer
@@ -115,27 +112,26 @@ const exampleReducer = (state = initialState, action) => {
 	}
 };
 
-// Create a configuration for the persist
-const configs: PersistConfig = {
-	key: "root", // Key to store the data
-	storage: AsyncStorage, // The storage that you want to use
-};
-
 // Here you will pass all your reducers
 const reducers = {
 	example: exampleReducer,
 };
 
-const persistReducers = persistReducer(configs, reducers);
+const rootReducer = persistReducer(reducers);
 
-const store = createStore(
-	persistReducers.combinedReducers,
-	persistReducers.preloadedState,
-);
+const store = createStore(rootReducer);
 
-const persistor = persistStore(store, configs);
+const configs: PersistConfig = {
+	key: "root", // Key to store the data
+	storage: {
+		type: "AsyncStorage", // The storage that you want to use
+	},
+};
 
-export default persistor;
+// This will initialize the store and rehydrate it
+initStore(store, configs);
+
+export default store;
 ```
 
 ## How to integrate with React Native or Expo

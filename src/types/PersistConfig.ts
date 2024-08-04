@@ -11,7 +11,9 @@ export interface PersistConfig {
 	 * There are no default values for this, you must provide a storage engine
 	 * @type {storage} - string - The storage engine to use
 	 * @example
-	 * storage: "AsyncStorage"
+	 * storage: {
+	 * 	type: "AsyncStorage",
+	 * }
 	 *
 	 * @description
 	 * !!! IMPORTANT !!!

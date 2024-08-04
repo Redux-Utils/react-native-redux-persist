@@ -1,14 +1,11 @@
-import type { EnhancedStore } from "@reduxjs/toolkit";
+import type { Store } from "redux";
 
 import MobileStorage from "./MobileStorage";
 import { rehydrateActionType } from "./constants";
 import type { PersistConfig } from "./types/PersistConfig";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-async function persistStore<S>(
-	store: EnhancedStore<S>,
-	configs: PersistConfig,
-) {
+async function initStore<S>(store: Store<S>, configs: PersistConfig) {
 	const { key, storage } = configs;
 
 	if (!key) {
@@ -35,4 +32,4 @@ async function persistStore<S>(
 	};
 }
 
-export { persistStore };
+export { initStore };

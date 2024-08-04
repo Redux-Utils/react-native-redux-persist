@@ -6,6 +6,8 @@ import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import packageJson from "./package.json" assert { type: "json" };
 
+const external = Object.keys(packageJson.devDependencies);
+
 export default defineConfig({
 	input: "src/index.ts",
 	output: [
@@ -18,15 +20,15 @@ export default defineConfig({
 			file: packageJson.main,
 			format: "cjs",
 			sourcemap: false,
-			interop: "auto"
+			interop: "auto",
 		},
 	],
-	external: ["@reduxjs/toolkit", "@react-native-async-storage/async-storage"],
+	external: external,
 	plugins: [
 		clear({
 			targets: ["dist", "types"],
 		}),
-		terser(),
+		// terser(),
 		nodeResolve(),
 		commonjs(),
 		typescript({

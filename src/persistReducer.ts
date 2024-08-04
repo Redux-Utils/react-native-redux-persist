@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Action, Reducer, UnknownAction } from "@reduxjs/toolkit";
-import { combineReducers } from "@reduxjs/toolkit";
+import type { Action, Reducer, UnknownAction } from "redux";
+import { combineReducers } from "redux";
 
 import { rehydrateActionType } from "./constants";
 import type { ReducerReceived } from "./types/persistReducer";

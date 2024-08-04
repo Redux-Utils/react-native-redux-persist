@@ -1,7 +1,16 @@
-import { rehydrateActionType } from "./constants";
+import {
+	rehydrateActionType,
+	prefix,
+	expoSecureStorePrefix,
+} from "./constants";
+import { initStore } from "./initStore";
 import { persistReducer } from "./persistReducer";
-import { persistStore } from "./persistStore";
 import type { PersistConfig } from "./types/PersistConfig";
-
 export type { PersistConfig };
-export { persistReducer, persistStore, rehydrateActionType };
+export {
+	persistReducer,
+	initStore,
+	rehydrateActionType,
+	prefix,
+	expoSecureStorePrefix,
+};

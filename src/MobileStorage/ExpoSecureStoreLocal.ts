@@ -1,14 +1,18 @@
-import type { AsyncStorageStatic } from "@react-native-async-storage/async-storage";
+import type * as SecureStore from "expo-secure-store";
 
 import type { LoadState, State } from "../types/MobileStorage";
 
-export default class AsyncStorageLocal {
+export default class ExpoSecureStoreLocal {
 	public static async loadState(
 		key: string,
-		storage: AsyncStorageStatic,
+		storage: typeof SecureStore,
+		options?: SecureStore.SecureStoreOptions,
 	): Promise<LoadState> {
 		try {
-			const serializedState: string | null = await storage.getItem(key);
+			const serializedState: string | null = await storage.getItemAsync(
+				key,
+				options,
+			);
 
 			if (serializedState === null) {
 				return undefined;
@@ -27,11 +31,12 @@ export default class AsyncStorageLocal {
 	public static async saveState(
 		key: string,
 		state: State,
-		storage: AsyncStorageStatic,
+		storage: typeof SecureStore,
+		options?: SecureStore.SecureStoreOptions,
 	): Promise<void> {
 		try {
 			const serializedState: string = JSON.stringify(state);
-			await storage.setItem(key, serializedState);
+			await storage.setItemAsync(key, serializedState, options);
 		} catch (error: unknown) {
 			// eslint-disable-next-line no-console
 			console.error(error);
