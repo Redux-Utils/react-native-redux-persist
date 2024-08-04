@@ -8,6 +8,29 @@
 
 - [JS README](./JS.README.md)
 
+## Storages supported
+
+- AsyncStorage
+  - type: "AsyncStorage"
+- Expo Secure Store
+  - type: "expo-secure-store"
+	- options: ExpoSecureStoreOptions
+	  - authenticationPrompt: string
+		- keychainAccessible: KeychainAccessibilityConstant
+		- keychainService: string
+		- requireAuthentication: boolean
+
+## Expo Secure Store Options
+
+```typescript
+interface ExpoSecureStoreOptions {
+	authenticationPrompt?: string;
+	keychainAccessible?: KeychainAccessibilityConstant;
+	keychainService?: string;
+	requireAuthentication?: boolean;
+}
+```
+
 ## Description
 
 This is a library that helps you to persist your redux store and rehydrate it when the app is reloaded.
