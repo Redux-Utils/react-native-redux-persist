@@ -6,7 +6,12 @@ import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import packageJson from "./package.json" assert { type: "json" };
 
-const external = Object.keys(packageJson.devDependencies);
+const external = [
+	"@reduxjs/toolkit",
+	"redux",
+	"@react-native-async-storage/async-storage",
+	"expo-secure-store",
+];
 
 export default defineConfig({
 	input: "src/index.ts",
@@ -28,7 +33,7 @@ export default defineConfig({
 		clear({
 			targets: ["dist", "types"],
 		}),
-		// terser(),
+		terser(),
 		nodeResolve(),
 		commonjs(),
 		typescript({
