@@ -23,9 +23,9 @@ Project is written in TypeScript. However, you can use it in JavaScript projects
   - type: "expo-secure-store"
   - options: ExpoSecureStoreOptions
     - authenticationPrompt: string
-  - keychainAccessible: KeychainAccessibilityConstant
-  - keychainService: string
-  - requireAuthentication: boolean
+    - keychainAccessible: KeychainAccessibilityConstant
+    - keychainService: string
+    - requireAuthentication: boolean
 - Generic Storage (React Native and Expo)
   - type: "GenericStorage"
   - driver: GenericStorageType
