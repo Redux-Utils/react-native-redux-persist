@@ -1,17 +1,5 @@
-## UNDER DEVELOPMENT
+## Expo Secure Store (Expo)
 
-!!! DO NOT USE IT IN PRODUCTION !!!
-
-# React Native Redux Persist
-
-## JS README
-
-- [JS README](./JS.README.md)
-
-## Storages supported
-
-- AsyncStorage (React Native and Expo)
-  - type: "AsyncStorage"
 - Expo Secure Store (Expo)
   - type: "expo-secure-store"
   - options: ExpoSecureStoreOptions
@@ -19,9 +7,6 @@
 	- keychainAccessible: KeychainAccessibilityConstant
 	- keychainService: string
 	- requireAuthentication: boolean
-- Generic Storage (React Native and Expo)
-  - type: "GenericStorage"
-	- driver: GenericStorageType
 
 ## Expo Secure Store Options
 
@@ -37,23 +22,6 @@ interface ExpoSecureStoreOptions {
 ## Description
 
 This is a library that helps you to persist your redux store and rehydrate it when the app is reloaded.
-It uses the mobile storage to save the data.
-You can use it with react-native and expo using the same code.
-Project is written in TypeScript. However, you can use it in JavaScript projects as well.
-
-## Installation
-
-### NPM
-
-```bash
-npm install react-native-redux-persist2
-```
-
-### Yarn
-
-```bash
-yarn add react-native-redux-persist2
-```
 
 ## Usage
 
@@ -69,6 +37,7 @@ import {
 } from "react-native-redux-persist2";
 
 // Example of a reducer
+
 const exampleSlice = createSlice({
 	name: "example",
 	initialState: {
@@ -82,6 +51,7 @@ const exampleSlice = createSlice({
 });
 
 // Here you will pass all your reducers
+
 const reducers = {
 	example: exampleSlice.reducer,
 };
@@ -95,7 +65,13 @@ const store = configureStore({
 const configs: PersistConfig = {
 	key: "root", // Key to store the data
 	storage: {
-		type: "AsyncStorage", // The storage that you want to use
+		type: "expo-secure-store", // The storage that you want to use
+		options: {
+			authenticationPrompt: "Authenticate to access the data",
+			keychainAccessible: "WheWhenUnlocked",
+			keychainService: "com.example.app",
+			requireAuthentication: true,
+		},
 	},
 };
 
@@ -103,34 +79,4 @@ const configs: PersistConfig = {
 initStore(store, configs);
 
 export default store;
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
 ```
-
-or you can use
-
-- [Redux Legacy](./docs/REDUX_LEGACY.md)
-
-## How to integrate with React Native or Expo
-
-In your root component, you will wrap your components with the Provider from react-redux.
-
-```tsx
-import React from "react";
-
-import { Provider } from "react-redux";
-import store from "./redux/store"; // Is the persistor that you created and exported in the previous step
-
-function App() {
-	return <Provider store={store}>{/* Your components */}</Provider>;
-}
-```
-
-## License
-
-MIT
-
-## Author
-
-Gabriel Logan
