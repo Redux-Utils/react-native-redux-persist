@@ -41,8 +41,9 @@ function persistReducer<
 
 				return data.state;
 			}
-			default:
+			default: {
 				return rootReducer(state, action);
+			}
 		}
 	};
 }

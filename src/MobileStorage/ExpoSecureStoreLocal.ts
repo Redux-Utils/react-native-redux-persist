@@ -8,24 +8,26 @@ export default class ExpoSecureStoreLocal {
 		storage: typeof SecureStore,
 		options?: SecureStore.SecureStoreOptions,
 	): Promise<LoadState> {
+		const serializedState: string | null = await storage.getItemAsync(
+			key,
+			options,
+		);
+
+		if (serializedState === null) {
+			return undefined;
+		}
+
+		let parsedState: LoadState;
+
 		try {
-			const serializedState: string | null = await storage.getItemAsync(
-				key,
-				options,
-			);
-
-			if (serializedState === null) {
-				return undefined;
-			}
-
-			const parsedState = JSON.parse(serializedState);
-
-			return parsedState;
+			parsedState = JSON.parse(serializedState);
 		} catch (error: unknown) {
 			// eslint-disable-next-line no-console
 			console.error(error);
 			return undefined;
 		}
+
+		return parsedState;
 	}
 
 	public static async saveState(
@@ -34,12 +36,8 @@ export default class ExpoSecureStoreLocal {
 		storage: typeof SecureStore,
 		options?: SecureStore.SecureStoreOptions,
 	): Promise<void> {
-		try {
-			const serializedState: string = JSON.stringify(state);
-			await storage.setItemAsync(key, serializedState, options);
-		} catch (error: unknown) {
-			// eslint-disable-next-line no-console
-			console.error(error);
-		}
+		const serializedState: string = JSON.stringify(state);
+
+		await storage.setItemAsync(key, serializedState, options);
 	}
 }

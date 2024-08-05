@@ -8,6 +8,13 @@
 
 - [TS README](./README.md)
 
+## Description
+
+This is a library that helps you to persist your redux store and rehydrate it when the app is reloaded.
+It uses the mobile storage to save the data.
+You can use it with react-native and expo using the same code.
+Project is written in TypeScript. However, you can use it in JavaScript projects as well.
+
 ## Storages supported
 
 - AsyncStorage (React Native and Expo)
@@ -16,19 +23,12 @@
   - type: "expo-secure-store"
   - options: ExpoSecureStoreOptions
     - authenticationPrompt: string
-	- keychainAccessible: KeychainAccessibilityConstant
-	- keychainService: string
-	- requireAuthentication: boolean
+  - keychainAccessible: KeychainAccessibilityConstant
+  - keychainService: string
+  - requireAuthentication: boolean
 - Generic Storage (React Native and Expo)
   - type: "GenericStorage"
   - driver: GenericStorageType
-
-## Description
-
-This is a library that helps you to persist your redux store and rehydrate it when the app is reloaded.
-It uses the mobile storage to save the data.
-You can use it with react-native and expo using the same code.
-Project is written in TypeScript. However, you can use it in JavaScript projects as well.
 
 ## Installation
 

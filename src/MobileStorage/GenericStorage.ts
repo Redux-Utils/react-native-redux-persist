@@ -6,21 +6,23 @@ export default class GenericStorageLocal {
 		key: string,
 		driver: GenericStorageType,
 	): Promise<LoadState> {
+		const serializedState: string | null = await driver.getItem(key);
+
+		if (serializedState === null) {
+			return undefined;
+		}
+
+		let parsedState: LoadState;
+
 		try {
-			const serializedState: string | null = await driver.getItem(key);
-
-			if (serializedState === null) {
-				return undefined;
-			}
-
-			const parsedState = JSON.parse(serializedState);
-
-			return parsedState;
+			parsedState = JSON.parse(serializedState);
 		} catch (error: unknown) {
 			// eslint-disable-next-line no-console
 			console.error(error);
 			return undefined;
 		}
+
+		return parsedState;
 	}
 
 	public static async saveState(
@@ -28,13 +30,8 @@ export default class GenericStorageLocal {
 		state: State,
 		driver: GenericStorageType,
 	): Promise<void> {
-		try {
-			const serializedState: string = JSON.stringify(state);
+		const serializedState: string = JSON.stringify(state);
 
-			await driver.setItem(key, serializedState);
-		} catch (error: unknown) {
-			// eslint-disable-next-line no-console
-			console.error(error);
-		}
+		await driver.setItem(key, serializedState);
 	}
 }

@@ -7,21 +7,23 @@ export default class AsyncStorageLocal {
 		key: string,
 		storage: AsyncStorageStatic,
 	): Promise<LoadState> {
+		const serializedState: string | null = await storage.getItem(key);
+
+		if (serializedState === null) {
+			return undefined;
+		}
+
+		let parsedState: LoadState;
+
 		try {
-			const serializedState: string | null = await storage.getItem(key);
-
-			if (serializedState === null) {
-				return undefined;
-			}
-
-			const parsedState = JSON.parse(serializedState);
-
-			return parsedState;
+			parsedState = JSON.parse(serializedState);
 		} catch (error: unknown) {
 			// eslint-disable-next-line no-console
 			console.error(error);
 			return undefined;
 		}
+
+		return parsedState;
 	}
 
 	public static async saveState(
@@ -29,12 +31,8 @@ export default class AsyncStorageLocal {
 		state: State,
 		storage: AsyncStorageStatic,
 	): Promise<void> {
-		try {
-			const serializedState: string = JSON.stringify(state);
-			await storage.setItem(key, serializedState);
-		} catch (error: unknown) {
-			// eslint-disable-next-line no-console
-			console.error(error);
-		}
+		const serializedState: string = JSON.stringify(state);
+
+		await storage.setItem(key, serializedState);
 	}
 }

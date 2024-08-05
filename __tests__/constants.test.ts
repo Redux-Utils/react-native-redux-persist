@@ -1,4 +1,8 @@
-import { rehydrateActionType, prefix, expoSecureStorePrefix } from "../src/constants";
+import {
+	rehydrateActionType,
+	prefix,
+	expoSecureStorePrefix,
+} from "../src/constants";
 
 describe("constants", () => {
 	it("Should retorn exactly string react/native/redux/persist:", () => {
