@@ -21,7 +21,7 @@
 	- requireAuthentication: boolean
 - Generic Storage (React Native and Expo)
   - type: "GenericStorage"
- - driver: GenericStorageType
+  - driver: GenericStorageType
 
 ## Expo Secure Store Options
 
