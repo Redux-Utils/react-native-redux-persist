@@ -62,6 +62,9 @@ const store = configureStore({
 	reducer: rootReducer,
 });
 
+/**
+ * IMPORTANT: Some devices do not support biometric authentication.
+ */
 const configs: PersistConfig = {
 	key: "root", // Key to store the data
 	storage: {
